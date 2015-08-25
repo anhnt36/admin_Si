@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    {#<link href="../css/pagination.css" rel="stylesheet" type="text/css"/>#}
+    <!-- Custom CSS -->
+    <link href="../css/blog-post.css" rel="stylesheet">
+    <link href="../css/stylesheets.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/pagination.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Start Bootstrap</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a href="../user/logout">Logout</a>
+                </li>
+                <li style="margin-top: 10px; color: white">
+
+                    {% if app.session.get('user')['username']  is defined %}
+                        Hi {{ app.session.get('user')['username'] }}
+                    {% endif %}
+
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+
+<div class="row">
+    <a href='javascript: history.go (-1)'>Quay lại trang trước</a>
+    <!-- Blog Post Content Column -->
+    {% for post in dataPost %}
+    <div class="col-lg-8 col-lg-offset-2">
+        <h2>{{ post['title'] }}</h2>
+            <div style="text-align: right">
+                <a href="../posts/destroy/{{ post['id'] }}" class='btn btn-danger'>Delete</a>
+                <a href="../posts/update/{{ post['id'] }}"  class='btn btn-success'>Update</a>
+            </div>
+        </td>
+        <!-- Post Content -->
+        <p class="lead">
+            {{ post['content'] }}
+        </p>
+        <hr>
+
+        <!-- Blog Comments -->
+
+        <!-- Comments Form -->
+        <div class="well">
+            <h4>Leave a Comment:</h4>
+
+            <form action="" method="POST">
+                <div class="form-group">
+                    {{ form_widget(form.content, {'attr':{'class':'form-control','name':'content','row':'3'}}) }}
+                    {{ form_widget(form.id_user, {'attr':{'name':'id_user'}}) }}
+                    {{ form_widget(form.id_post, {'attr':{'name':'id_post'}}) }}
+                </div>
+                <button type="submit" class="btn btn-primary" name="comment" value="OK">Submit</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <!-- Posted Comments -->
+
+        <!-- Comment -->
+
+        {% for comment in post['comment'] %}
+
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">{{ comment['name'] }}
+                        <small>{{ comment['created_Time'] }}</small>
+                    </h4>
+                    {{ comment['content'] }}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+</div>
+
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy; Your Website 2014</p>
+        </div>
+    </div>
+    <!-- /.row -->
+</footer>
+
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

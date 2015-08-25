@@ -1,0 +1,78 @@
+<html>
+<head>
+<head>
+    <title></title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="../css/stylesheets.css"/>
+    {% endblock %}
+
+</head>
+<body>
+<div class="breadLine">
+
+    <ul class="breadcrumb">
+        <li><a href="list-categories.html">List Users</a> <span class="divider">></span></li>
+        <li class="active">Add</li>
+    </ul>
+
+</div>
+
+<div class="workplace">
+    <div class="row-fluid">
+
+        <div class="span12">
+            <div class="head">
+                <div class="isw-grid"></div>
+                <h1>Users Management</h1>
+                <div class="clear"></div>
+            </div>
+            <div class="block-fluid">
+                <form enctype ="multipart/form-data" action="" method="POST">
+                    <div class="row-form">
+                        <div class="span3">Username:</div>
+                        <div class="span9">{{ form_widget(form.name, {'attr':{'name':'name'}}) }}</div>
+                        <div class="span3"></div>
+                        <p style="color:red">{{ form_errors(form.name) }}</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span3">Password:</div>
+                        <div class="span9">{{ form_widget(form.password, {'attr':{'name':'password'}}) }}</div>
+                        <div class="span3"></div>
+                        <p style="color:red">{{ form_errors(form.password) }}</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span3">FullName:</div>
+                        <div class="span9">{{ form_widget(form.fullname, {'attr':{'name':'fullname'}}) }}</div>
+                        <div class="span3"></div>
+                        <p style="color:red">{{ form_errors(form.fullname) }}</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span3">Sex:</div>
+                        <div class="span9">
+                            <div class="radio">
+                                <label>{{ form_widget(form.sex, {'attr':{'name':'sex'}}) }}</label>
+                            </div>
+
+                        </div>
+                        <div class="span3"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <button class="btn btn-success" type="submit" name='OK'>AddUser</button>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="dr"><span></span></div>
+
+</div>
+
+</body>
+</html>

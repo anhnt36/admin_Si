@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="../css/stylesheets.css"/>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class='loginBox'>
+        <div class="loginHead">
+            <img src="../img/logo.png" alt="NTQ Solution Admin Control Panel" title="NTQ Solution Admin Control Panel"/>
+        </div>
+        <form class="form-horizontal" action="" method="POST">
+            <div class='control-group'>
+                <label for="inputUsername">Name :</label>
+                {{ form_widget(form.name,{'attr':{'id':'inputUsername','name':'nameUser'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div class='control-group'>
+                <label for="inputPassword">Password :</label>
+                {{ form_widget(form.password,{'attr':{'id':'inputPassword','name':'password'}}) }}
+                {{ form_errors(form.password) }}
+                {% for flashMessage in app.session.flashbag.get('loginError') %}
+                    <div class="flash-notice">
+                        * {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="control-group" style="margin-bottom: 5px;">
+                <label class="checkbox"><input type="checkbox" name='rememberUser' value="1"> Remember me</label>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-block" name='login'>Sign in</button>
+            </div>
+            {# {{ form_end(form) }} #}
+        </form>
+    </div>
+{% endblock %}
+
+
+</body>
+</html>
